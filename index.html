@@ -7,7 +7,9 @@
         <meta name="keywords" content="HTML, CSS, JavaScript, PHP" />
         <meta name="author" content="Mateus Guedz" />
         <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-
+        <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+        <!-- Importação do sendMail.js -->
+        <script src="php/sendMail.php"></script>
         <link rel="shortcut icon" href="images/favicon.ico" />    
         <link href='https://fonts.googleapis.com/css?family=Poppins:100,200,300,400,400i,500,600,700%7CMontserrat:700' rel='stylesheet' type='text/css'>		
         <link rel="stylesheet" type="text/css"  href='style.css' />
@@ -658,15 +660,16 @@
                                 </div>
                                 <p>&nbsp;</p>
 
-                                <div class="contact-form">
-                                    <p><input id="name" type="text" name="your-name" placeholder="Seu Nome"></p>
-                                    <p><input id="contact-email" type="email" name="your-email" placeholder="Seu Email"></p>                                    
-                                    <p><input id="subject" type="text" name="your-subject" placeholder="Assunto"></p>
-                                    <p><textarea id="message" name="your-message" placeholder="Sua Mensagem"></textarea></p>
-                                    <p class="contact-submit-holder">
-                                        
-                                        <input type="hidden" name="action" value="SendMessage"></p>                                
-                                </div>  
+                                <form id="contact-form" action="php/sendMail.php" method="post">
+                                    <div class="contact-form">
+                                        <p><input id="name" type="text" name="your-name" placeholder="Seu Nome"></p>
+                                        <p><input id="contact-email" type="email" name="your-email" placeholder="Seu Email"></p>
+                                        <p><input id="subject" type="text" name="your-subject" placeholder="Assunto"></p>
+                                        <p><textarea id="message" name="your-message" placeholder="Sua Mensagem"></textarea></p>
+                                        <input type="hidden" name="action" value="SendMessage">
+                                        <p class="contact-submit-holder"><input type="submit" value="ENVIAR"></p>
+                                    </div>
+                                </form>
 
                                 <p>&nbsp;</p>
 
