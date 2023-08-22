@@ -8,6 +8,7 @@
         <meta name="author" content="Mateus Guedz" />
         <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
         <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+        <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
         <!-- Importação do sendMail.js -->
         <script src="php/sendMail.php"></script>
         <link rel="shortcut icon" href="images/favicon.ico" />    
@@ -660,16 +661,44 @@
                                 </div>
                                 <p>&nbsp;</p>
 
-                                <form id="contact-form" action="php/sendMail.php" method="post">
+                                <form id="contact-form">
                                     <div class="contact-form">
                                         <p><input id="name" type="text" name="your-name" placeholder="Seu Nome"></p>
                                         <p><input id="contact-email" type="email" name="your-email" placeholder="Seu Email"></p>
                                         <p><input id="subject" type="text" name="your-subject" placeholder="Assunto"></p>
                                         <p><textarea id="message" name="your-message" placeholder="Sua Mensagem"></textarea></p>
-                                        <input type="hidden" name="action" value="SendMessage">
-                                        <p class="contact-submit-holder"><input type="submit" value="ENVIAR"></p>
+                                        <p class="contact-submit-holder"><button type="button" id="submit-button">ENVIAR</button></p>
                                     </div>
                                 </form>
+                            
+                                <script>
+                                    $(document).ready(function () {
+                                        $("#submit-button").click(function () {
+                                            const name = $("#name").val();
+                                            const email = $("#contact-email").val();
+                                            const subject = $("#subject").val();
+                                            const message = $("#message").val();
+                            
+                                            $.ajax({
+                                                url: "https://formspree.io/f/xaygoojd",
+                                                method: "POST",
+                                                data: {
+                                                    name: name,
+                                                    email: email,
+                                                    subject: subject,
+                                                    message: message
+                                                },
+                                                dataType: "json"
+                                            })
+                                            .done(function () {
+                                                alert("Tudo certo, sua mensagem foi encaminhada!");
+                                            })
+                                            .fail(function () {
+                                                alert("Algo de errado no envio, tente o Whatsapp");
+                                            });
+                                        });
+                                    });
+                                </script>
 
                                 <p>&nbsp;</p>
 
